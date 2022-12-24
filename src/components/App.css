@@ -1,0 +1,69 @@
+
+.pettycash{
+  padding : 15mm;
+  margin: 13mm;
+  color : #7689de ;
+  font-family:sans-serif;
+  font-size: 5mm;
+  background-image: "./components/images.jpg";
+  background-color: #a9dce3;
+  -ms-layout-grid: 5mm;
+  border-color: black;
+  border-style :ridge;
+  border-width: 2mm;
+  background-position: 150cm;
+  
+  
+}
+img {
+  
+  width : 100px
+}
+
+body{
+  background-image: URL "./components/images.jpg";
+}
+
+
+  
+label{
+  font-size: 7mm;
+}
+
+h1{
+  color : darkblue;
+  font-style:italic;
+  margin: 10mm;
+  align-content: center;
+}
+
+select{
+  padding: 5mm;
+  color: brown;
+  margin: 02mm;
+  width: 20mm;
+  border-radius : 12mm;
+  outline-color: black;
+}
+
+input{
+  color: darkred;
+  padding : 05mm;
+  margin: 2mm;
+  border-radius : 12mm;
+  
+
+}
+
+option{
+  font-size: 8mm;
+  border-radius : 12mm;
+}
+
+p{
+  align-items: top;
+  font-size: 7mm;
+  color: black ;
+  font-style: unset;
+}
+

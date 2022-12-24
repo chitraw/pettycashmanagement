@@ -1,0 +1,26 @@
+.container{
+    color : #722620;
+    font-size: 5mm;
+    background-color:#f2bc94;
+    
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-left: 0mm;
+    border-radius: 20mm;
+    border-color: black;
+    border-style: double;
+    border-radius: 0mm;
+    border-width: 3mm;
+}
+
+h1{
+    font-family: cursive ;
+    color :#722620;
+}
+
+th{
+    
+    font-size: 6mm;
+    padding: 25mm;
+    margin: 15mm;
+
+}
