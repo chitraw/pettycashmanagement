@@ -1,9 +1,35 @@
-import React from "react";
+import React, {useEffect, useState} from "react"
+import Axios from 'axios'
 
 const  Header = () => {
+  const [datas, setData] = useState([])
+  const [docNo, setDocNo] = useState([])
+  const [curr, setCurr] = useState([])
+ const d = new Date().toLocaleString();
+
+ function getIntData(){
+  Axios.get('http://localhost:3001/d').then((response)=>{
+        
+
+ setData(response.data.recordset)
+ Axios.get('http://localhost:3001/getIntData').then((response)=>{
+  
+  setDocNo(response.data.recordset)
+})
+Axios.get('http://localhost:3001/getCurr').then((response)=>{
+  setCurr(response.data.recordset)
+})
+
+})
+
+  
+ 
+
+ }
+
+ useEffect(getIntData, [])
     
-    
-    const d = new
+    const da = new
   Date().toLocaleString();
     return (
         
@@ -21,13 +47,16 @@ const  Header = () => {
             <label>
               Petty cash type:
             <select >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
+            <option value="">SELECT</option>
+          {datas.map((data)=>{
+            return(
+              <option value={data.FM_ACCOUNT_CODE}>{data.FM_ACCOUNT_NAME}</option>
+            )
+          })
+          }
             </select>
             </label>
-            <input type="submit" value="Submit" />
+           
             
             <label>
           Journel type:
@@ -38,20 +67,22 @@ const  Header = () => {
             <option value="4">4</option>
           </select>
         </label>
-        <input type="submit" value="Submit" />
+        
         
            
 
         <label>
           DOC NO:
           <select >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
+          <option value="">SELECT</option>
+         {docNo.map((data)=>{
+          return(
+            <option value = {data.NEWDOC}>{data.NEWDOC}</option>
+          )
+         })}
           </select>
         </label>
-        <input type="submit" value="Submit" />
+       
         <br></br>
 
         <label>
@@ -63,18 +94,22 @@ const  Header = () => {
             <option value="4">4</option>
           </select>
         </label>
-        <input type="submit" value="Submit" />
+       
 
         <label>
           Currency:
           <select >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
+          <option value="">SELECT</option>
+         {curr.map((data)=>{
+          return(
+            <option value = {data.FM_CURR_CODE}> {data.FM_CURR_CODE} </option>
+          )
+         })
+
+         }
+         </select>
         </label>
-        <input type="submit" value="Submit" />
+       
 
         <label>
           Division:
@@ -85,7 +120,7 @@ const  Header = () => {
             <option value="4">4</option>
           </select>
         </label>
-        <input type="submit" value="Submit" />
+       
         <br></br>
 
         <label>
@@ -97,7 +132,7 @@ const  Header = () => {
             <option value="4">4</option>
           </select>
         </label>
-        <input type="submit" value="Submit" />
+      
 
         <label>
           Petty cash Cash Acc:
@@ -108,7 +143,7 @@ const  Header = () => {
             <option value="4">4</option>
           </select>
         </label>
-        <input type="submit" value="Submit" />
+    
         
 
         <label>
@@ -120,11 +155,11 @@ const  Header = () => {
             <option value="4">4</option>
           </select>
         </label>
-        <input type="submit" value="Submit" />
+       
         <br></br>
 
 
-        
+       <button>Submit</button>
         
         
 
