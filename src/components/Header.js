@@ -17,6 +17,10 @@ const  Header = () => {
   const [bill, setBill] = useState("")
   const [crdr, setCrdr] = useState("")
   const [lamt, setLamt] = useState("")
+  const [date, setDate] = useState("")
+  const [desc, setDesc] = useState("")
+  const [lacc, setLacc] = useState("")
+  const [idoc, setIdoc] = useState("")
 
  const d = new Date().toLocaleString();
 
@@ -53,12 +57,34 @@ Axios.get('http://localhost:3001/getpType').then((response)=>{
  useEffect(getIntData, [])
 
  function myFunction(){
+  setDate(d)
+  console.log(iptype, ijtype, icurr,mode, acc, sl, amt, bill, crdr, lamt, date, idoc, desc, lacc);
+    Axios.post('http://localhost:3001/insertData',{
+      iptype : iptype,
+      ijtype : ijtype,
+      icurr : icurr,
+      mode : mode,
+      acc : acc,
+      sl : sl,
+      amt : amt,
+      bill : bill,
+      crdr : crdr,
+      lamt: lamt,
+      date : date,
+      idoc : idoc,
+      desc : desc,
+      lacc : lacc,
+
     
+    }).then((response)=>{
+      console.log(response);
+    })
 
  }
     
     const da = new
   Date().toLocaleString();
+  
     return (
         
         <div className = "pettycash" >
@@ -71,7 +97,7 @@ Axios.get('http://localhost:3001/getpType').then((response)=>{
 
              <h1> PETTY CASH MANAGEMENT   </h1> 
              <p>Date: {d}</p>
-            <form classNmae = " drop_down">
+            
             <label>
               Petty cash type:
             <select onChange={(e)=>{
@@ -108,7 +134,9 @@ Axios.get('http://localhost:3001/getpType').then((response)=>{
 
         <label>
           DOC NO:
-          <select >
+          <select onChange={(e)=>{
+            setIdoc(e.target.value)
+          }} >
           <option value="">SELECT</option>
          {docNo.map((data)=>{
           return(
@@ -188,13 +216,16 @@ Axios.get('http://localhost:3001/getpType').then((response)=>{
         <input onChange={(e)=>{
           setBill(e.target.value)
         }} type="text" placeholder="Bill"></input>
-        <input type="text" placeholder="Description"></input>
+
+        <input onChange={(e)=>{
+             setDesc(e.target.value)
+        }} type="text" placeholder="Description"></input>
 
         <hr></hr>
 
         <label>Dr/Cr</label>
         <select onChange={(e)=>{
-          setCrdr("")
+          setCrdr(e.target.value)
         }} >
         <option value="CR">Cr</option>
         <option value="DR">Dr</option>
@@ -202,7 +233,7 @@ Axios.get('http://localhost:3001/getpType').then((response)=>{
 
         <label>Ledger</label>
         <select onChange={(e)=>{
-            setAcc(e.target.value)
+            setLacc(e.target.value)
           }} >
             <option value="1">SELECT</option>
             {datas.map((data)=>{
@@ -223,7 +254,7 @@ Axios.get('http://localhost:3001/getpType').then((response)=>{
         
         
 
-        </form>
+        
             </div>
             
              
