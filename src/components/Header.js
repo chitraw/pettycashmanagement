@@ -21,6 +21,7 @@ const  Header = () => {
   const [desc, setDesc] = useState("")
   const [lacc, setLacc] = useState("")
   const [idoc, setIdoc] = useState("")
+  const [msg, setMsg] = useState("")
 
  const d = new Date().toLocaleString();
 
@@ -76,9 +77,7 @@ Axios.get('http://localhost:3001/getpType').then((response)=>{
       lacc : lacc,
 
     
-    }).then((response)=>{
-      console.log(response);
-    })
+    }).then(setMsg("Data inserted....."))
 
  }
     
@@ -210,7 +209,7 @@ Axios.get('http://localhost:3001/getpType').then((response)=>{
         }} type="text" placeholder="SL NO"></input>
         <input  type="text" placeholder="Ledger"></input>
         <input onChange={(e)=>{
-          setAmt("")
+          setAmt(e.target.value)
         }} type="number" placeholder="Debit Amount"></input>
         
         <input onChange={(e)=>{
@@ -252,7 +251,9 @@ Axios.get('http://localhost:3001/getpType').then((response)=>{
 
        <button onClick={myFunction}>Submit</button>
         
-        
+        <hr></hr>
+
+        <p>{msg}</p>
 
         
             </div>
