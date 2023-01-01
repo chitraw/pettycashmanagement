@@ -1,49 +1,67 @@
-import React from "react";
+import  Axios  from "axios";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/navbar"
 import './table.css';
-class Table extends React.Component {
-    render(){
+function Table() {
+    const [trans, setTrans] = useState([])
+        const [crsum, setCrsum] = useState([])
+        const [drsum, setDrsum] = useState([])
+      function getData(){
+         Axios.get('http://localhost:3001/gettrans').then((response)=>{
+            setTrans(response.data.recordset)
+         })
 
-        return <div> 
-            <navbar></navbar>
+         Axios.get('http://localhost:3001/getsumcr').then((response)=>{
+            setCrsum(response.data.recordset)
+         })
+         Axios.get('http://localhost:3001/getsumdr').then((response)=>{
+            setDrsum(response.data.recordset)
+         })}
 
-        <div className="container">
-        <h1> Table</h1>
+         useEffect(getData, [])
+
+        return (
+       <div>
+       
+     {crsum.map((data)=>{
+        return (
+            <p>Total Credit: {data.TOTAL}</p>
+        )
+     })}
+     {drsum.map((data)=>{
+        return (
+            <p>Total Debit: {data.TOTAL}</p>
+        )
+     })}
+
         <table>
-            <thead>
-            <tr>
-                <th>SL NO     </th>
-                <th>Discription       </th>
-                <th>Amount          </th>
-                <th>Credit            </th>
-                <th>Dedit          </th>
-            </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td/>
-                    <td/>
-                    <td/>
-                    <td/>
-                </tr>
-                <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
+  <tr>
+    <th>Amount</th>
+    <th>Description</th>
+    <th>CR/DR</th>
+    
+  </tr>
+  {trans.map((data)=>{
+    return (
         <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-            </tbody>
-        </table>
-    </div>
-    </div>
+    <td>{data.FT_VOUCHER_AMOUNT}</td>
+    <td>{data.FT_VOUCHER_REPORT_DESCRIPTION}</td>
+    <td>{data.FT_VOUCHER_CR_DR}</td>
+  </tr> 
+    )
+  })}
+  
+ 
+</table>
+        
+    
+    
+       </div>
+        )
 };
 
     
 
-}
+
 
 export default Table;
